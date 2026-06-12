@@ -61,6 +61,32 @@
             0%, 100% { opacity: 0; transform: scale(0.5); }
             50% { opacity: 1; transform: scale(1); }
         }
+
+        /* Castle entrance animation */
+        #castello {
+            opacity: 0;
+            transform: scale(0.95);
+            filter: drop-shadow(0 0 0 rgba(255, 215, 0, 0));
+            animation: castleEntrance 1.8s ease-out forwards;
+            transform-origin: center center;
+            will-change: transform, opacity, filter;
+        }
+
+        @keyframes castleEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+                filter: drop-shadow(0 0 0 rgba(255, 215, 0, 0));
+            }
+            60% {
+                filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 rgba(255, 215, 0, 0));
+            }
+        }
     </style>
 </head>
 <body>

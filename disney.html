@@ -87,6 +87,25 @@
                 filter: drop-shadow(0 0 0 rgba(255, 215, 0, 0));
             }
         }
+
+        /* Machine group entrance animation */
+        #gruppo_macchina {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: machineEntrance 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            will-change: transform, opacity;
+        }
+
+        @keyframes machineEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>

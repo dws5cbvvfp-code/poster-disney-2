@@ -13,31 +13,37 @@
         }
         
         html, body {
-            width: 100%;
-            height: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
             overflow: hidden;
             background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        
+
         .artwork-container {
             width: 1080px;
             height: 1920px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
             overflow: hidden;
+            flex-shrink: 0;
+            /* If screen is smaller, scale down */
+            transform: scale(var(--canvas-scale, 1));
+            transform-origin: center center;
         }
-        
+
         .artwork-container svg {
-            width: 1080px;
-            height: 1920px;
+            width: 100%;
+            height: 100%;
             display: block;
         }
-        
-        /* Starry background effect */
+
+        /* Stars should be positioned relative to the artwork container */
         .stars {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -146,7 +152,7 @@
 
         /* Slider container */
         .slider-container {
-          position: fixed;
+          position: absolute;
           bottom: 30px;
           left: 50%;
           transform: translateX(-50%);
@@ -270,8 +276,8 @@
     </style>
 </head>
 <body>
-    <div class="stars" id="stars"></div>
     <div class="artwork-container">
+        <div class="stars" id="stars"></div>
         <svg id="Livello_1" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg" width="381mm" height="677.33mm" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1920">
   <defs>
     <clipPath id="clippath">
@@ -437,6 +443,11 @@
     <path d="M960.07,1806.86c-1.03-.36-2.09-.73-2.99-1.11l-.18-.07-.02-.19c-.16-1.52-.42-3.03-.79-4.49l-.05-.18.14-.13c.75-.7,1.66-1.44,2.53-2.16,1.12-.92,2.28-1.87,3.08-2.7-.28-.79-.6-1.6-.97-2.46-1.17-.08-2.7,0-4.17.09-1.11.06-2.25.13-3.24.12h-.19s-.09-.17-.09-.17c-.72-1.33-1.55-2.63-2.46-3.85l-.11-.15.08-.17c.42-.91.96-1.93,1.49-2.92.69-1.3,1.41-2.63,1.83-3.72-.59-.65-1.2-1.29-1.83-1.91-1.1.37-2.47,1.03-3.79,1.66-1.01.49-2.06.99-2.99,1.36l-.18.07-.15-.12c-1.17-.95-2.43-1.83-3.74-2.62l-.16-.1v-.19c.05-.99.16-2.13.27-3.24.15-1.47.3-2.99.27-4.16-.85-.41-1.64-.76-2.42-1.07-.86.76-1.86,1.88-2.83,2.96-.76.85-1.54,1.72-2.27,2.44l-.14.13-.18-.05c-1.44-.43-2.94-.76-4.45-.98l-.19-.03-.07-.18c-.34-.92-.66-1.99-.98-3.04-.43-1.44-.88-2.92-1.37-4-.9-.05-1.81-.07-2.71-.06-.53,1.06-1.04,2.52-1.54,3.94-.36,1.03-.73,2.09-1.11,2.99l-.07.18-.19.02c-1.52.16-3.03.42-4.49.79l-.18.05-.13-.14c-.69-.75-1.44-1.65-2.16-2.53-.92-1.12-1.87-2.29-2.7-3.08-.79.28-1.6.6-2.46.97-.08,1.17,0,2.69.09,4.17.06,1.11.13,2.25.12,3.24v.19s-.17.09-.17.09c-1.34.73-2.63,1.56-3.85,2.46l-.15.11-.17-.08c-.91-.42-1.93-.96-2.92-1.49-1.29-.69-2.63-1.41-3.72-1.83-.65.59-1.29,1.2-1.91,1.83.37,1.1,1.03,2.47,1.66,3.79.49,1.01.99,2.06,1.36,2.99l.07.18-.12.15c-.96,1.18-1.84,2.44-2.62,3.74l-.1.16h-.19c-.99-.05-2.14-.16-3.24-.27-1.47-.15-2.99-.3-4.16-.27-.41.85-.76,1.64-1.07,2.42.76.86,1.88,1.86,2.96,2.83.85.76,1.72,1.54,2.44,2.27l.13.14-.05.18c-.43,1.44-.76,2.94-.98,4.45l-.03.19-.18.07c-.92.34-2,.66-3.04.98-1.44.43-2.92.88-4,1.37-.03.45-.05.9-.06,1.35s0,.9,0,1.35c1.06.53,2.52,1.04,3.94,1.54,1.03.36,2.09.73,3,1.11l.18.07.02.19c.16,1.52.42,3.03.79,4.49l.05.19-.14.13c-.75.69-1.65,1.44-2.53,2.16-1.12.92-2.28,1.87-3.08,2.7.28.79.6,1.6.97,2.46,1.17.08,2.69,0,4.17-.09,1.11-.06,2.25-.13,3.24-.12h.19s.09.17.09.17c.72,1.33,1.55,2.63,2.46,3.85l.11.15-.08.17c-.42.91-.96,1.94-1.49,2.92-.69,1.29-1.41,2.63-1.82,3.71.59.65,1.2,1.3,1.83,1.91,1.1-.37,2.47-1.03,3.79-1.66,1.01-.48,2.05-.99,2.99-1.36l.18-.07.15.12c1.18.96,2.44,1.84,3.74,2.62l.16.1v.19c-.05.99-.16,2.13-.27,3.24-.15,1.47-.3,2.99-.27,4.17.85.41,1.64.76,2.42,1.07.86-.76,1.86-1.88,2.83-2.96.76-.85,1.54-1.72,2.27-2.44l.14-.13.18.05c1.44.43,2.94.76,4.45.98l.19.03.07.18c.34.92.67,2,.98,3.04.43,1.43.88,2.92,1.37,4,.9.05,1.81.07,2.71.06.53-1.06,1.04-2.52,1.54-3.94.36-1.03.73-2.09,1.11-2.99l.07-.18.19-.02c1.52-.16,3.03-.42,4.49-.79l.18-.05.13.14c.69.75,1.44,1.65,2.16,2.53.92,1.12,1.87,2.29,2.7,3.08.79-.28,1.6-.6,2.46-.97.08-1.17,0-2.69-.09-4.17-.06-1.11-.13-2.25-.12-3.24v-.19s.17-.09.17-.09c1.34-.73,2.63-1.55,3.85-2.46l.15-.11.17.08c.91.42,1.93.96,2.92,1.49,1.3.69,2.63,1.41,3.72,1.83.65-.58,1.29-1.2,1.91-1.83-.37-1.1-1.03-2.47-1.66-3.79-.49-1.01-.99-2.06-1.37-2.99l-.07-.18.12-.15c.96-1.18,1.84-2.44,2.62-3.74l.1-.16h.19c.99.05,2.13.16,3.24.27,1.22.12,2.48.25,3.53.27h0c.22,0,.43,0,.63,0,.41-.84.76-1.64,1.07-2.42-.76-.86-1.88-1.86-2.96-2.83-.85-.76-1.72-1.54-2.44-2.27l-.13-.14.05-.18c.43-1.44.76-2.94.98-4.45l.03-.19.18-.07c.92-.34,2-.67,3.04-.98,1.44-.43,2.92-.88,4-1.37.03-.45.05-.9.06-1.35s0-.91,0-1.36c-1.06-.53-2.52-1.04-3.94-1.54ZM946.67,1795.2c.48.77.92,1.58,1.32,2.4l.13.28-14.09,7.73-.13-.34c-.31-.8-.74-1.57-1.27-2.29l-.22-.3,14.09-7.74.16.26ZM927.94,1783.11l.36.05c6.93,1,13.26,4.83,17.37,10.53l.21.3-14.25,7.82-.17-.16c-1.07-1.01-2.3-1.76-3.66-2.23l-.22-.08.35-16.23ZM923.45,1782.91h.31c.91-.03,1.83-.02,2.74.05l.31.02-.35,16.07-.36-.05c-1.02-.15-1.64-.16-2.62-.06l-.37.04.35-16.08ZM904.14,1792.8c4.35-5.51,10.84-9.08,17.81-9.77l.36-.04-.35,16.23-.23.07c-1.38.41-2.64,1.1-3.75,2.07l-.18.16-13.89-8.43.23-.29ZM901.65,1796.61c.43-.81.91-1.6,1.42-2.34l.17-.25,13.75,8.34-.23.29c-.56.7-1.02,1.45-1.37,2.24l-.15.34-13.74-8.33.15-.27ZM900.41,1818.54c-1.3-3.25-1.92-6.68-1.84-10.21s.84-6.92,2.28-10.11l.15-.33,13.89,8.43-.06.23c-.17.71-.26,1.43-.28,2.13s.05,1.43.19,2.15l.05.23-14.24,7.82-.14-.34ZM902.46,1822.6c-.47-.76-.92-1.57-1.32-2.4l-.13-.28,14.09-7.73.13.34c.31.8.74,1.57,1.27,2.29l.22.3-14.09,7.74-.16-.26ZM921.2,1834.69l-.36-.05c-6.93-1-13.26-4.83-17.37-10.53l-.21-.3,14.25-7.82.17.16c1.07,1.01,2.3,1.76,3.65,2.23l.22.08-.35,16.23ZM925.69,1834.89h-.31c-.46.02-.91.03-1.38.02s-.91-.03-1.36-.07l-.31-.02.35-16.07.36.05c1.02.15,1.64.16,2.62.06l.37-.04-.35,16.08ZM924.45,1814.67c-2.06-.04-3.95-1.19-4.93-2.99-.74-1.35-.91-2.91-.48-4.39.43-1.48,1.41-2.7,2.76-3.44.89-.49,1.89-.73,2.9-.71,2.05.04,3.95,1.19,4.93,2.99,1.53,2.79.51,6.3-2.28,7.83-.89.49-1.89.73-2.9.71ZM945,1825c-4.35,5.51-10.84,9.08-17.81,9.77l-.36.04.35-16.23.23-.07c1.38-.41,2.64-1.1,3.75-2.07l.18-.16,13.89,8.43-.23.29ZM947.49,1821.19c-.43.81-.91,1.6-1.42,2.34l-.17.25-13.74-8.34.23-.29c.56-.7,1.02-1.45,1.37-2.24l.15-.34,13.74,8.33-.15.27ZM948.3,1819.57l-.15.33-13.89-8.43.06-.23c.17-.71.26-1.43.28-2.13.02-.71-.05-1.43-.19-2.15l-.05-.23,14.24-7.82.14.34c1.3,3.25,1.92,6.68,1.84,10.21-.08,3.52-.84,6.92-2.28,10.11Z" fill="#1d1d1b"/>
   </g>
 </svg>
+
+    <!-- Pulse control slider -->
+    <div class="slider-container" id="slider-container">
+      <label for="pulse-slider">✨ Pulsazione</label>
+      <input type="range" id="pulse-slider" min="0" max="100" value="50">
     </div>
 
     <script>
@@ -453,12 +464,6 @@
             starsContainer.appendChild(star);
         }
     </script>
-
-    <!-- Pulse control slider -->
-    <div class="slider-container" id="slider-container">
-      <label for="pulse-slider">✨ Pulsazione</label>
-      <input type="range" id="pulse-slider" min="0" max="100" value="50">
-    </div>
 
     <script>
       // Pulse slider control
@@ -515,6 +520,19 @@
       updatePulse();
       resetInactivityTimer();
     </script>
+
+    <script>
+      // Calculate scale to fit 1080x1920 canvas into viewport
+      function updateCanvasScale() {
+          const scale = Math.min(window.innerWidth / 1080, window.innerHeight / 1920, 1);
+          document.documentElement.style.setProperty('--canvas-scale', scale);
+      }
+
+      window.addEventListener('resize', updateCanvasScale);
+      window.addEventListener('load', updateCanvasScale);
+      updateCanvasScale();
+    </script>
+
 <script>
   // Tubo spitting animation
   const tubo = document.getElementById('tubo');
@@ -572,6 +590,8 @@
   const MAX_ELEMENTS = 30;
 
   function spawnMickeyElement() {
+    const container = document.querySelector('.artwork-container');
+
     const type = elementTypes[currentTypeIndex];
     currentTypeIndex = (currentTypeIndex + 1) % elementTypes.length;
 
@@ -580,13 +600,9 @@
     el.className = `mickey-element mickey-${type}`;
     el.innerHTML = mickeySVGs[type];
 
-    // Get the artwork container for positioning
-    const container = document.querySelector('.artwork-container');
-    
-    // Spawn from bottom of tubo in SVG coordinates
-    // Tubo is at x=525.56, y=895.22, width=27.55, height=291.48
-    const spawnX = 525.56 + 27.55/2; // Center of tubo
-    const spawnY = 895.22 + 291.48;  // Bottom of tubo
+    // Position relative to the container (0-1080, 0-1920 coordinate space)
+    const tuboX = 525.56 + 27.55/2; // Center of tubo in SVG space
+    const tuboY = 895.22 + 291.48;  // Bottom of tubo in SVG space
 
     // Random initial velocity - downward from bottom of tubo
     const angle = (Math.random() - 0.5) * 0.5; // Narrower spread downward
@@ -598,17 +614,17 @@
     const rotation = Math.random() * 360;
     const rotationSpeed = (Math.random() - 0.5) * 10;
 
-    // Set initial position (relative to artwork container)
-    el.style.left = spawnX + 'px';
-    el.style.top = spawnY + 'px';
+    // Set initial position
+    el.style.left = tuboX + 'px';
+    el.style.top = tuboY + 'px';
     el.style.transform = `rotate(${rotation}deg)`;
 
     container.appendChild(el);
 
     const element = {
       el: el,
-      x: spawnX,
-      y: spawnY,
+      x: tuboX,
+      y: tuboY,
       vx: vx,
       vy: vy,
       rotation: rotation,
@@ -627,9 +643,8 @@
 
   // Animation loop
   function animateElements() {
-    // Boundaries of the artwork (1080x1920)
-    const ARTWORK_WIDTH = 1080;
-    const ARTWORK_HEIGHT = 1920;
+    const containerWidth = 1080;
+    const containerHeight = 1920;
 
     activeElements.forEach(elem => {
       // Update position
@@ -639,16 +654,16 @@
       // Gravity
       elem.vy += 0.05;
 
-      // Bounce off walls of the artwork
-      if (elem.x < 0 || elem.x > ARTWORK_WIDTH - 50) {
+      // Bounce off walls (within 1080x1920 canvas)
+      if (elem.x < 0 || elem.x > containerWidth - 50) {
         elem.vx *= -0.8;
-        elem.x = Math.max(0, Math.min(elem.x, ARTWORK_WIDTH - 50));
+        elem.x = Math.max(0, Math.min(elem.x, containerWidth - 50));
       }
 
-      // Bounce off floor/ceiling of the artwork
-      if (elem.y > ARTWORK_HEIGHT - 50) {
+      // Bounce off floor/ceiling
+      if (elem.y > containerHeight - 50) {
         elem.vy *= -0.7;
-        elem.y = ARTWORK_HEIGHT - 50;
+        elem.y = containerHeight - 50;
       }
       if (elem.y < 0) {
         elem.vy *= -0.7;
@@ -658,7 +673,7 @@
       // Update rotation
       elem.rotation += elem.rotationSpeed;
 
-      // Apply transform
+      // Apply transform (positions are already in container coordinates)
       elem.el.style.left = elem.x + 'px';
       elem.el.style.top = elem.y + 'px';
       elem.el.style.transform = `rotate(${elem.rotation}deg) scale(${elem.scale})`;

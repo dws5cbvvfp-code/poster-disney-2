@@ -20,6 +20,8 @@ The goal of this project is to showcase the Disney-themed SVG artwork (`Artwork 
     *   **Castle (`#castello`):** Fade-in, slight scale, and a soft glow that fades out.
     *   **Flags (`#bandiera_1`, `#bandiera_2`, `#bandiera_3`):** Smooth, continuous wave animation.
     *   **Machine Group (`#gruppo_macchina` and `#forno`):** Gentle slide-up from bottom, plus a pulsating heat/light glow effect on the oven (`#forno`).
+    *   **Castle & Flags Pulse:** Continuous pulse effect (scale + glow) applied to the castle group and flags, controlled by a user-adjustable slider.
+*   **Interactive Slider:** A hidden slider control (auto-hides after 3s of inactivity) that allows real-time adjustment of the pulse intensity for the castle and flags.
 *   **Dependencies:** None. No external JS libraries (like GSAP or jQuery) or CSS frameworks.
 
 ---
@@ -84,9 +86,71 @@ To enhance the magical atmosphere, a system of pure CSS shimmering stars will be
         }
         ```
 
+### C. Castle & Flags Pulse (Interactive)
+*   **Elements:** `#castello` and all flags (`#bandiera_1`, `#bandiera_2`, `#bandiera_3`)
+*   **Effect:** Combined scale pulse and golden glow, both controlled by a CSS custom property `--pulse-intensity` (0 to 1).
+*   **CSS Custom Properties approach:**
+    ```css
+    :root {
+      --pulse-intensity: 0.5; /* Default 50% */
+    }
+    
+    @keyframes castlePulse {
+      0%, 100% { 
+        transform: scale(1); 
+        filter: drop-shadow(0 0 calc(10px * var(--pulse-intensity)) rgba(255, 215, 0, calc(0.3 * var(--pulse-intensity))));
+      }
+      50% { 
+        transform: scale(calc(1 + 0.02 * var(--pulse-intensity))); 
+        filter: drop-shadow(0 0 calc(30px * var(--pulse-intensity)) rgba(255, 215, 0, calc(0.6 * var(--pulse-intensity))));
+      }
+    }
+    ```
+*   **Slider Control:** HTML range input (0-100) that updates `--pulse-intensity` via JavaScript.
+*   **Auto-hide:** Slider fades out after 3s of mouse inactivity, reappears on mouse movement.
+
 ---
 
-## 5. Implementation Steps
+## 5. Slider UI Specifications
+
+### Layout and Positioning
+*   **Position:** Fixed overlay at bottom center of viewport.
+*   **Size:** ~300px wide, 40px tall.
+*   **Appearance:** Semi-transparent dark background with rounded corners, subtle border glow.
+*   **Visibility:** Auto-hides after 3s of mouse inactivity; reappears instantly on mouse move/touch.
+
+### Slider Design
+*   **Type:** HTML `<input type="range">` styled with CSS.
+*   **Range:** 0 to 100 (maps to `--pulse-intensity: 0` to `1`).
+*   **Default:** 50 (50% intensity).
+*   **Label:** "Pulsazione Castello" or icon (✨).
+
+### JavaScript Logic
+```javascript
+const slider = document.getElementById('pulse-slider');
+const root = document.documentElement;
+let inactivityTimer;
+
+slider.addEventListener('input', (e) => {
+  const intensity = e.target.value / 100;
+  root.style.setProperty('--pulse-intensity', intensity);
+  resetInactivityTimer();
+});
+
+function resetInactivityTimer() {
+  slider.parentElement.classList.add('visible');
+  clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(() => {
+    slider.parentElement.classList.remove('visible');
+  }, 3000);
+}
+
+document.addEventListener('mousemove', resetInactivityTimer);
+```
+
+---
+
+## 6. Implementation Steps
 1.  **Read and Sanitize SVG:** Load and verify the contents of `Artwork Disney Tavola Disegno 1.svg`.
 2.  **HTML Scaffolding:** Create `disney.html` with appropriate metadata, CSS styles block, and background elements.
 3.  **Embed SVG:** Inline the `<svg>` contents into the `.artwork-container` div inside `disney.html`.

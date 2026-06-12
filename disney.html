@@ -131,6 +131,22 @@
                 transform: skewY(-4deg) scaleX(0.95);
             }
         }
+
+        /* Oven glow animation */
+        #forno {
+            animation: furnaceGlow 3s ease-in-out infinite;
+            animation-delay: 1.5s;
+            will-change: filter;
+        }
+
+        @keyframes furnaceGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 5px rgba(251, 146, 60, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 25px rgba(251, 146, 60, 0.9));
+            }
+        }
     </style>
 </head>
 <body>

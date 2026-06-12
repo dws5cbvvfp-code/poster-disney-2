@@ -106,6 +106,31 @@
                 transform: translateY(0);
             }
         }
+
+        /* Flag waving animations */
+        #bandiera_1 {
+            animation: wave 2s ease-in-out infinite;
+            transform-origin: bottom left;
+        }
+
+        #bandiera_2 {
+            animation: wave 2s ease-in-out infinite -0.5s;
+            transform-origin: bottom left;
+        }
+
+        #bandiera_3 {
+            animation: wave 2s ease-in-out infinite -1s;
+            transform-origin: bottom left;
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: skewY(0deg) scaleX(1);
+            }
+            50% {
+                transform: skewY(-4deg) scaleX(0.95);
+            }
+        }
     </style>
 </head>
 <body>

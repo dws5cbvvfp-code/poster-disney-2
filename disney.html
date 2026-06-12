@@ -20,19 +20,18 @@
         }
         
         .artwork-container {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+            width: 1080px;
+            height: 1920px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
         }
         
         .artwork-container svg {
-            max-width: 100%;
-            max-height: 100%;
-            width: auto;
-            height: auto;
+            width: 1080px;
+            height: 1920px;
             display: block;
         }
         
@@ -581,16 +580,13 @@
     el.className = `mickey-element mickey-${type}`;
     el.innerHTML = mickeySVGs[type];
 
-    // Get tubo position (center of the tubo rect)
-    // The tubo is at x=525.56, y=895.22, width=27.55, height=291.48
-    // In the SVG coordinate system (1080x1920)
-    // We need to convert to viewport coordinates
-    const svgRect = svg.getBoundingClientRect();
-    const scaleX = svgRect.width / 1080;
-    const scaleY = svgRect.height / 1920;
-
-    const tuboX = (525.56 + 27.55/2) * scaleX + svgRect.left;
-    const tuboY = (895.22 + 291.48) * scaleY + svgRect.top; // Bottom of the tubo
+    // Get the artwork container for positioning
+    const container = document.querySelector('.artwork-container');
+    
+    // Spawn from bottom of tubo in SVG coordinates
+    // Tubo is at x=525.56, y=895.22, width=27.55, height=291.48
+    const spawnX = 525.56 + 27.55/2; // Center of tubo
+    const spawnY = 895.22 + 291.48;  // Bottom of tubo
 
     // Random initial velocity - downward from bottom of tubo
     const angle = (Math.random() - 0.5) * 0.5; // Narrower spread downward
@@ -602,17 +598,17 @@
     const rotation = Math.random() * 360;
     const rotationSpeed = (Math.random() - 0.5) * 10;
 
-    // Set initial position
-    el.style.left = tuboX + 'px';
-    el.style.top = tuboY + 'px';
+    // Set initial position (relative to artwork container)
+    el.style.left = spawnX + 'px';
+    el.style.top = spawnY + 'px';
     el.style.transform = `rotate(${rotation}deg)`;
 
-    document.body.appendChild(el);
+    container.appendChild(el);
 
     const element = {
       el: el,
-      x: tuboX,
-      y: tuboY,
+      x: spawnX,
+      y: spawnY,
       vx: vx,
       vy: vy,
       rotation: rotation,
@@ -631,8 +627,9 @@
 
   // Animation loop
   function animateElements() {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
+    // Boundaries of the artwork (1080x1920)
+    const ARTWORK_WIDTH = 1080;
+    const ARTWORK_HEIGHT = 1920;
 
     activeElements.forEach(elem => {
       // Update position
@@ -642,16 +639,16 @@
       // Gravity
       elem.vy += 0.05;
 
-      // Bounce off walls
-      if (elem.x < 0 || elem.x > windowWidth - 50) {
+      // Bounce off walls of the artwork
+      if (elem.x < 0 || elem.x > ARTWORK_WIDTH - 50) {
         elem.vx *= -0.8;
-        elem.x = Math.max(0, Math.min(elem.x, windowWidth - 50));
+        elem.x = Math.max(0, Math.min(elem.x, ARTWORK_WIDTH - 50));
       }
 
-      // Bounce off floor/ceiling
-      if (elem.y > windowHeight - 50) {
+      // Bounce off floor/ceiling of the artwork
+      if (elem.y > ARTWORK_HEIGHT - 50) {
         elem.vy *= -0.7;
-        elem.y = windowHeight - 50;
+        elem.y = ARTWORK_HEIGHT - 50;
       }
       if (elem.y < 0) {
         elem.vy *= -0.7;

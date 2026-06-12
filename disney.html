@@ -260,18 +260,23 @@
         }
 
         .mickey-face {
-            width: 12px;
-            height: 14px;
+            width: 40px;
+            height: 46px;
         }
 
         .mickey-hand {
-            width: 11px;
-            height: 12px;
+            width: 35px;
+            height: 40px;
         }
 
         .mickey-shoe {
-            width: 13px;
-            height: 9px;
+            width: 45px;
+            height: 33px;
+        }
+
+        .mickey-inner-face {
+            width: 55px;
+            height: 38px;
         }
     </style>
 </head>
@@ -540,7 +545,7 @@
   const container = document.querySelector('.artwork-container');
 
   // Element types in sequence
-  const elementTypes = ['face', 'hand', 'shoe'];
+  const elementTypes = ['face', 'hand', 'shoe', 'innerFace'];
   let currentTypeIndex = 0;
 
   // SVG definitions for Mickey elements (from real SVG files)
@@ -582,12 +587,46 @@
   <path d="M47.5,176.3l-22-22.1c-12-12-18.7-28.9-22.7-45.4C-9.4,58.7,20.2,15.4,68.8,7.1c30.9-5.3,62.1,6.1,86.6,25.2,2.9,2.3,5.8,7.4,9.9,7.1,8.6-.5,16.5,1.8,23.4,6.4,2.2,1.5,8.9,1.1,10.7-.8,5.2-5.5,1.1-22.7,11.5-32C220.1,4.8,232.2.1,244.7.1h43.6c17.7-.1,46.9,12.1,60.8,26.8s15,31.5,4.3,46.9c1,3.6,2.6,7.3,4.8,10.2,6.4,8.4,11.8,17.4,14,28.1,7.3,35.1-14.2,66.3-43.7,84.9s-25.9,14.7-40.6,18.8c-14.7,4.1-29,7.5-44.4,9.2-28.5,3-56.3,1.8-84.9-2-40.7-5.5-79.3-20.2-111.3-46.7ZM6.1,78.1c-.6,4.8-.9,9.4,0,14.1l3.7,20.6c4.3,17.4,14.1,31.7,26,44.8,7,7.7,14.2,14.8,22.7,20.8,37.2,26.4,69.8,35.4,114.7,39.6l10.6,1,21.6,1.1,31.4-.7c34.7-3.3,71.3-11.7,98.8-33.7,10.3-8.2,19.5-16.8,25.3-28.5,12.4-25.1,8.3-53.6-12.1-72.7-1.8-1.7-4-7.4-2.4-9.2,6.2-6.9,10.8-16.8,8-25.9s-5.6-14.4-10.9-18.7c-7.9-6.5-15.5-11.3-24.7-14.5l-8.5-3c-10.1-3.5-19.9-4.1-30.2-5.1-16.7-1.6-33.7-1.5-49.4,3.7-12.5,4.1-19.7,13.2-19.9,26.7l-.3,15c-.3,1.7-5.5,2.1-7.7,2.1,3.2,10.9,12.4,20.8,12.3,34.5l-10.7-17.7-4.6-6.6-14.2-14.6c-2.1-2.2-7.8-4.8-10-3.2-3.4,2.5.3,6.5,1.1,8.6l5.6,15.2c1.7,4.7,1.3,11.5,1.2,16.9l-11.2-27.4c-10.2-24.9-53.8-49.5-80.9-49.3h-18.4c-14.3.2-35.4,12.1-46.8,23-11.7,11.3-18,26.6-20.1,43.1Z"/>
   <path class="st0" d="M6.1,78.1c2-16.5,8.3-31.8,20.1-43.1,11.4-11,32.4-22.8,46.8-22.9h18.4c27.1-.3,70.7,24.2,80.9,49.2l11.2,27.4c.1-5.4.5-12.2-1.2-16.9l-5.6-15.2c-.8-2.2-4.5-6.1-1.1-8.6,2.2-1.6,7.8,1,10,3.2l14.2,14.6,4.6,6.6,10.7,17.7c0-13.6-9.1-23.6-12.3-34.5,2.2,0,7.4-.3,7.7-2.1l.3-15c.2-13.5,7.4-22.6,19.9-26.7,15.7-5.2,32.7-5.3,49.4-3.7,10.2,1,20.1,1.5,30.2,5.1l8.5,3c9.2,3.2,16.9,8,24.7,14.5,5.3,4.3,8.7,11.6,10.9,18.7s-1.8,19-8,25.9c-1.5,1.8.6,7.5,2.4,9.2,20.4,19.1,24.6,47.6,12.1,72.7-5.8,11.7-15,20.3-25.3,28.5-27.4,21.9-64.1,30.4-98.8,33.7l-31.4.7-21.6-1.1-10.6-1c-44.9-4.2-77.5-13.2-114.7-39.6-8.5-6-15.7-13.1-22.7-20.8-11.9-13.1-21.8-27.4-26-44.8l-3.7-20.6c-.8-4.7-.5-9.3,0-14.1ZM283.7,61.2h12.9c13.8,0,33.6-3.8,32-14.2-1.6-10.6-27.9-15.8-42.9-17l-26-2.1-10.2,2.4c-5.4,1.3-11.9,3.6-15.2,8.4s-.4,7.1,1.1,8.4c9.7,7.6,22.8,11.5,34.9,12.7l13.4,1.4Z"/>
   <path d="M283.7,61.2l-13.4-1.4c-12.1-1.3-25.2-5.1-34.9-12.7-1.5-1.3-2.2-6.8-1.1-8.4,3.2-4.7,9.8-7.1,15.2-8.4l10.2-2.4,26,2.1c14.9,1.2,41.2,6.4,42.9,17,1.6,10.4-18.2,14.3-32,14.2h-12.9Z"/>
+</svg>`,
+
+    innerFace: `<svg id="Livello_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 625.5 434.1">
+  <defs>
+    <style>
+      .st0 {
+        fill: #fff;
+      }
+
+      .st1 {
+        fill: none;
+        stroke: #fcfcfc;
+        stroke-miterlimit: 10;
+        stroke-width: 14px;
+      }
+    </style>
+  </defs>
+  <path class="st0" d="M163.1,231.9c-27.3,16.2-59.7,21.2-90.1,10.5-35.9-12.6-61.4-42.6-69.9-79.7C-9.5,107.4,16.7,49.5,66.8,23.2c38-20,83.2-16.2,115.9,10.9,51.4,42.7,53.8,120,11.6,170.5-11.7,8.5-21.2,16.9-31.1,27.2Z"/>
+  <path class="st0" d="M469.9,225.2c-13.1-15.8-27.6-26.6-44-37.7-26.5-36.8-32.1-85.2-12.6-126.2,26.2-55,90.1-77.1,144.2-49.2,56,28.9,82.2,96.4,60.1,155.3-22.6,60.4-90.8,87.9-147.8,57.8Z"/>
+  <path class="st0" d="M482.3,405.5c-10.5-6.9-20-11.3-33.2-10,23.9-76.8,11.7-142.6-45.8-201.8,89.1,44.3,130.6,147.4,100.7,240.4-6.8-11.7-12.5-20.8-21.7-28.7Z"/>
+  <path class="st0" d="M178.3,395.7c-22.6-1-40.3,12.3-51.6,33.9-25.8-87.1,29-198.3,110-244.5-34.5,38.2-73.1,99.3-69.4,151.6.9,20.2,4.9,38.5,11,59Z"/>
+  <path class="st0" d="M308.1,186.9c-8.2-7.6-12.3-11.6-22.8-18,17.4-4,36-5.7,54.2-1.7-10.8,6,19,21.8-31.5,19.7Z"/>
+  <path class="st1" d="M172.8,395.2s-24.8-218.3,135.2-218.3"/>
+  <path class="st1" d="M465.3,395.2s24.8-218.3-135.2-218.3"/>
 </svg>`
   };
 
   // Active elements array
   const activeElements = [];
-  const MAX_ELEMENTS = 300;
+  const MAX_ELEMENTS = 2000;
+
+  // Global group scale - FIXED at 1.0, no growth
+  let groupScale = 1.0;
+  const MAX_SCALE = 1.0;
+  const SCALE_STEP = 0;
+
+  // Ground level tracking for stacking - divide canvas into 40 columns
+  const COLUMNS = 40;
+  const COLUMN_WIDTH = 1080 / COLUMNS;
+  const groundLevels = new Array(COLUMNS).fill(1920);
 
   function spawnMickeyElement() {
     const container = document.querySelector('.artwork-container');
@@ -600,36 +639,37 @@
     el.className = `mickey-element mickey-${type}`;
     el.innerHTML = mickeySVGs[type];
 
-    // Position relative to the container (0-1080, 0-1920 coordinate space)
-    const tuboX = 525.56 + 27.55/2; // Center of tubo in SVG space
-    const tuboY = 895.22 + 291.48;  // Bottom of tubo in SVG space
+    // Random column for this element to fall into
+    const column = Math.floor(Math.random() * COLUMNS);
+    const x = column * COLUMN_WIDTH + Math.random() * (COLUMN_WIDTH - 40);
+    
+    // Start from above the canvas
+    const y = -60;
 
-    // Random initial velocity - downward from bottom of tubo
-    const angle = (Math.random() - 0.5) * 0.5; // Narrower spread downward
-    const speed = 3 + Math.random() * 4;
-    const vx = Math.sin(angle) * speed;
-    const vy = Math.abs(Math.cos(angle)) * speed + 2; // Always downward with initial push
+    // Small random horizontal velocity, mostly downward
+    const vx = (Math.random() - 0.5) * 2;
+    const vy = 2 + Math.random() * 3;
 
     // Random rotation
     const rotation = Math.random() * 360;
-    const rotationSpeed = (Math.random() - 0.5) * 10;
 
     // Set initial position
-    el.style.left = tuboX + 'px';
-    el.style.top = tuboY + 'px';
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
     el.style.transform = `rotate(${rotation}deg)`;
 
     container.appendChild(el);
 
     const element = {
       el: el,
-      x: tuboX,
-      y: tuboY,
+      x: x,
+      y: y,
       vx: vx,
       vy: vy,
       rotation: rotation,
-      rotationSpeed: rotationSpeed,
-      scale: 0.5 + Math.random() * 0.5
+      column: column,
+      settled: false,
+      width: 40 + Math.random() * 20 // Approximate width variation
     };
 
     activeElements.push(element);
@@ -647,43 +687,60 @@
     const containerHeight = 1920;
 
     activeElements.forEach(elem => {
+      if (elem.settled) return; // Skip settled elements
+
       // Update position
       elem.x += elem.vx;
       elem.y += elem.vy;
 
-      // Gravity
-      elem.vy += 0.05;
+      // Strong gravity for fast falling
+      elem.vy += 0.3;
+      elem.vy = Math.min(elem.vy, 15); // Terminal velocity
 
-      // Bounce off walls (within 1080x1920 canvas)
-      if (elem.x < 0 || elem.x > containerWidth - 50) {
-        elem.vx *= -0.8;
-        elem.x = Math.max(0, Math.min(elem.x, containerWidth - 50));
+      // Keep within horizontal bounds
+      if (elem.x < 0) {
+        elem.x = 0;
+        elem.vx = Math.abs(elem.vx) * 0.3;
+      }
+      if (elem.x > containerWidth - elem.width) {
+        elem.x = containerWidth - elem.width;
+        elem.vx = -Math.abs(elem.vx) * 0.3;
       }
 
-      // Bounce off floor/ceiling
-      if (elem.y > containerHeight - 50) {
-        elem.vy *= -0.7;
-        elem.y = containerHeight - 50;
-      }
-      if (elem.y < 0) {
-        elem.vy *= -0.7;
-        elem.y = 0;
+      // Check if element hit the ground level of its column
+      const elemHeight = 50; // Approximate element height
+      const groundY = groundLevels[elem.column] - elemHeight;
+      
+      if (elem.y >= groundY) {
+        // Element settled
+        elem.y = groundY;
+        elem.vy = 0;
+        elem.vx = 0;
+        elem.settled = true;
+        
+        // Update ground level for this column
+        groundLevels[elem.column] = groundY;
+        
+        // Also affect neighboring columns slightly for natural stacking
+        if (elem.column > 0) {
+          groundLevels[elem.column - 1] = Math.min(groundLevels[elem.column - 1], groundY + elemHeight * 0.5);
+        }
+        if (elem.column < COLUMNS - 1) {
+          groundLevels[elem.column + 1] = Math.min(groundLevels[elem.column + 1], groundY + elemHeight * 0.5);
+        }
       }
 
-      // Update rotation
-      elem.rotation += elem.rotationSpeed;
-
-      // Apply transform (positions are already in container coordinates)
+      // Apply transform
       elem.el.style.left = elem.x + 'px';
       elem.el.style.top = elem.y + 'px';
-      elem.el.style.transform = `rotate(${elem.rotation}deg) scale(${elem.scale})`;
+      elem.el.style.transform = `rotate(${elem.rotation}deg)`;
     });
 
     requestAnimationFrame(animateElements);
   }
 
   // Start spawning
-  setInterval(spawnMickeyElement, 100); // Every 0.1 seconds
+  setInterval(spawnMickeyElement, 30); // ~33 elements per second for fast filling
 
   // Start animation loop
   animateElements();

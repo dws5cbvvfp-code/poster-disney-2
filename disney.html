@@ -590,13 +590,13 @@
     const scaleY = svgRect.height / 1920;
 
     const tuboX = (525.56 + 27.55/2) * scaleX + svgRect.left;
-    const tuboY = (895.22 + 291.48/2) * scaleY + svgRect.top;
+    const tuboY = (895.22 + 291.48) * scaleY + svgRect.top; // Bottom of the tubo
 
-    // Random initial velocity
-    const angle = (Math.random() - 0.5) * Math.PI; // -90 to 90 degrees upward
-    const speed = 2 + Math.random() * 3;
+    // Random initial velocity - downward from bottom of tubo
+    const angle = (Math.random() - 0.5) * 0.5; // Narrower spread downward
+    const speed = 3 + Math.random() * 4;
     const vx = Math.sin(angle) * speed;
-    const vy = -Math.cos(angle) * speed; // upward
+    const vy = Math.abs(Math.cos(angle)) * speed + 2; // Always downward with initial push
 
     // Random rotation
     const rotation = Math.random() * 360;

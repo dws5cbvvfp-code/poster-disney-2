@@ -260,18 +260,18 @@
         }
 
         .mickey-face {
-            width: 50px;
-            height: 58px;
+            width: 12px;
+            height: 14px;
         }
 
         .mickey-hand {
-            width: 45px;
-            height: 50px;
+            width: 11px;
+            height: 12px;
         }
 
         .mickey-shoe {
-            width: 55px;
-            height: 40px;
+            width: 13px;
+            height: 9px;
         }
     </style>
 </head>
@@ -587,7 +587,7 @@
 
   // Active elements array
   const activeElements = [];
-  const MAX_ELEMENTS = 30;
+  const MAX_ELEMENTS = 300;
 
   function spawnMickeyElement() {
     const container = document.querySelector('.artwork-container');
@@ -683,7 +683,7 @@
   }
 
   // Start spawning
-  setInterval(spawnMickeyElement, 500); // Every 0.5 seconds
+  setInterval(spawnMickeyElement, 100); // Every 0.1 seconds
 
   // Start animation loop
   animateElements();
